@@ -7,7 +7,7 @@ public class HeatWaveBullet : MBullet {
 
     public override void Reset()
     {
-        transform.position = startingPos;
+        transform.localPosition = startingPos;
     }
     protected override void OnEnable()
     {

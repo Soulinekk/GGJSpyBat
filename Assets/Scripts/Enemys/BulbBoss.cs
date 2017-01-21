@@ -8,12 +8,14 @@ public class BulbBoss : Enemy {
     public enum States { Intro, Hot, Angry, Die,Dead }
     States state;
 
+    System.Random rnd = new System.Random();
     bool gotHit = false;
     bool shatter = false;
     public float angrySpeed;
     public float jumpPower;
 
     GameObject heatWave;
+    List<GameObject> heatBeams=new List<GameObject>();
 
     protected  override void Start()
     {
@@ -28,6 +30,12 @@ public class BulbBoss : Enemy {
                 heatWave = o.gameObject;
                 break;
             }
+        }
+        foreach(MBullet b in heatWave.GetComponentsInChildren<MBullet>())
+        {
+            heatBeams.Add(b.gameObject);
+            b.gameObject.SetActive(false);
+           
         }
         heatWave.SetActive(false);
 //
@@ -76,16 +84,23 @@ public class BulbBoss : Enemy {
     private IEnumerator StateHot()
     {
         Debug.Log("Hot");
+        heatWave.SetActive(true);
+        InvokeRepeating("HeatSpawn", 0f, 0.5f);
         while (!gotHit)
         {
             //Initialize HeatWave
-            heatWave.SetActive(true);
-            Debug.Log("Die,Die");
-            yield return new WaitForSeconds(4f);  //HeatWaves Delay
-            heatWave.SetActive(false);
+            
+            
+            
+            yield return null; 
+            
         }
-
-       yield return new WaitForSeconds(1f); //Play Transition Anim 
+        foreach(GameObject g in heatBeams)
+        {
+            g.SetActive(false);
+        }
+        heatWave.SetActive(false);
+        yield return new WaitForSeconds(1f); //Play Transition Anim 
         state = States.Angry;
         StartCoroutine(StateAngry());
     }
@@ -152,5 +167,12 @@ public class BulbBoss : Enemy {
 
     }
 
+    void HeatSpawn()
+    {
 
+
+       GameObject g = heatBeams[rnd.Next(heatBeams.Count)];
+        g.SetActive(false);
+        g.SetActive(true);
+    }
 }
