@@ -24,15 +24,42 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         #region Dash
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
+        animator.SetFloat("Horizontal", h);
+        animator.SetFloat("Vertical", v);
+
+        if (h != 0)
+        {
+            animator.SetBool("MovingH", true);
+        }
+        else
+        {
+            animator.SetBool("MovingH", false);
+        }
+        if (v != 0)
+        {
+            animator.SetBool("MovingV", true);
+        }
+        else
+        {
+            animator.SetBool("MovingV", false);
+        }
 
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && canUseDash)
         {
-            #region if's
+            StartCoroutine(DashCooldown());
+            animator.SetTrigger("Dash");
+            
+
+
+
+
+
+
+            /*#region if's
                 if (h != 0)
                 {
                     animator.SetBool("MovingH", true);
@@ -62,11 +89,8 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(DashCooldown());
                     //StartCoroutine(Dash());
             }
-            #endregion
+            #endregion*/
         }
-
-        animator.SetFloat("Horizontal", h);
-        animator.SetFloat("Vertical", v);
         #endregion
     }
 
@@ -102,12 +126,5 @@ public class PlayerMovement : MonoBehaviour
         canUseDash = false;
         yield return new WaitForSeconds(2);
         canUseDash = true;
-    }
-
-    IEnumerator Dash()
-    {
-        moveSpeed *= dashSpeed;
-        yield return new WaitForSeconds(0.6f);
-        moveSpeed = tempSpeedConteiner;
     }
 }
