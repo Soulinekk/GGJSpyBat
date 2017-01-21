@@ -2,52 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     public float moveSpeed = 10f;
     public Rigidbody2D rbody;
     public float inputDelay = 0.1f;
     private Vector2 movement;
-    public int dashAnimationDirection;
     public Animator animator;
+    public bool canUseDash = true;
+    public float dashSpeed = 30f;
+    float tempSpeedConteiner;
+    public float thrust;
 
-	void Start () {
+    void Start()
+    {
         rbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-	}
-	
-	void Update () {
+        tempSpeedConteiner = moveSpeed;
+    }
 
-        #region
+    void Update()
+    {
+
+        #region Dash
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-        {
-            animator.SetBool("Dash", true);
-        }
-        else
-        {
-            animator.SetBool("Dash", false);
-        }
 
-        if (h != 0)
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && canUseDash)
         {
-            animator.SetBool("MovingH", true);
-        }
-        else
-        {
-            animator.SetBool("MovingH", false);
-        }
+            #region if's
+                if (h != 0)
+                {
+                    animator.SetBool("MovingH", true);
+                    animator.SetTrigger("Dash");
+                    StartCoroutine(DashCooldown());
+                    //StartCoroutine(Dash());
+            }
+                else
+                {
+                    animator.SetBool("MovingH", false);
+                    animator.SetTrigger("Dash");
+                    StartCoroutine(DashCooldown());
+                    //StartCoroutine(Dash());
+            }
 
-        if (v != 0)
-        {
-            animator.SetBool("MovingV", true);
-        }
-        else
-        {
-            animator.SetBool("MovingV", false);
+                if (v != 0)
+                {
+                    animator.SetBool("MovingV", true);
+                    animator.SetTrigger("Dash");
+                    StartCoroutine(DashCooldown());
+                    //StartCoroutine(Dash());
+            }
+                else
+                {
+                    animator.SetBool("MovingV", false);
+                    animator.SetTrigger("Dash");
+                    StartCoroutine(DashCooldown());
+                    //StartCoroutine(Dash());
+            }
+            #endregion
         }
 
         animator.SetFloat("Horizontal", h);
@@ -60,18 +75,16 @@ public class PlayerMovement : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Movement(h, v);
-        //Dash(h, v);
+    }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift))
-        {
-            animator.SetBool("Dash", true);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
-        {
-            animator.SetBool("Dash", false);
-        }
-        animator.SetFloat("Horizontal", v);
-        animator.SetFloat("Vertical", v);
+    void ForceDash()
+    {
+        rbody.AddForce(transform.up*thrust);
+    }
+
+    void ForceDash2()
+    {
+        rbody.AddForce(-transform.up * thrust);
     }
 
     void Movement(float h, float v)
@@ -84,34 +97,17 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    /*void Dash(float h, float v)
+    IEnumerator DashCooldown()
     {
-        // Up
-        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.RightShift)))
-        {
-            if (v > 0 && h==0)
-            {
-                dashAnimationDirection = 1;
-                Debug.Log("Up");
-            }
+        canUseDash = false;
+        yield return new WaitForSeconds(2);
+        canUseDash = true;
+    }
 
-            if (v < 0 && h == 0)
-            {
-                dashAnimationDirection = 2;
-                Debug.Log("Down");
-            }
-
-            if (h < 0 && v == 0)
-            {
-                dashAnimationDirection = 3;
-                Debug.Log("Left");
-            }
-
-            if (h > 0 && v == 0)
-            {
-                dashAnimationDirection = 4;
-                Debug.Log("Right");
-            }
-        }
-    }*/
+    IEnumerator Dash()
+    {
+        moveSpeed *= dashSpeed;
+        yield return new WaitForSeconds(0.6f);
+        moveSpeed = tempSpeedConteiner;
+    }
 }
