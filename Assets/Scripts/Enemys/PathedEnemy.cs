@@ -22,9 +22,7 @@ public class PathedEnemy : Enemy {
     // Update is called once per frame
     protected IEnumerator MoveUP(int n)
     {
-        Quaternion rotation = Quaternion.LookRotation
-             (points[n] - transform.position, transform.TransformDirection(Vector3.up));
-        transform.rotation = new Quaternion(0f, 0f, rotation.z, rotation.w);
+        
 
         while (transform.position != points[n])
         {
@@ -43,9 +41,7 @@ public class PathedEnemy : Enemy {
 
     protected IEnumerator MoveStart()
     {
-        Quaternion rotation = Quaternion.LookRotation
-             (startingPoint - transform.position, transform.TransformDirection(Vector3.up));
-        transform.rotation = new Quaternion(0f, 0f, rotation.z, rotation.w);
+       
 
         while (transform.position != startingPoint)
         {
@@ -56,9 +52,11 @@ public class PathedEnemy : Enemy {
         StartCoroutine(MoveUP(0));
     }
 
-    void RotateTowardTarget(GameObject target,)
+    protected void RotateTowardTarget(Vector3 target)
     {
-
+        Quaternion rotation = Quaternion.LookRotation
+             (target - transform.position, transform.TransformDirection(Vector3.up));
+        transform.rotation = new Quaternion(0f, 0f, rotation.z, rotation.w);
     }
 }
 
