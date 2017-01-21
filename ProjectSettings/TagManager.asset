@@ -11,6 +11,7 @@ TagManager:
   - CameraMaskOff
   - CameraMaskFast
   - Collectable
+  - BG
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Player
   - Bullets
   - Collectable
-  - 
+  - BG
   - 
   - 
   - 
