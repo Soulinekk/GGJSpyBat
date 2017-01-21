@@ -315,9 +315,11 @@ Prefab:
     - target: {fileID: 114543910153499646, guid: e1364dfd0e84c5f43ae52abc25fa3842,
         type: 2}
       propertyPath: moveSpeed
-      value: 3
+<<<<<<< HEAD
       value: 2
+=======
       value: 3
+>>>>>>> origin/master
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1364dfd0e84c5f43ae52abc25fa3842, type: 2}
