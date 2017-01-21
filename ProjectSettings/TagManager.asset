@@ -22,9 +22,9 @@ TagManager:
   - Walls
   - Enemy
   - BulbBoss
-  - 
-  - 
-  - 
+  - BGWall
+  - Player
+  - Bullets
   - 
   - 
   - 

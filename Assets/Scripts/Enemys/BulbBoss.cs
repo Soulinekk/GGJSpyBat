@@ -7,7 +7,7 @@ public class BulbBoss : Enemy {
 
     public enum States { Intro, Hot, Angry, Die,Dead }
     States state;
-
+    CameraShake camShake;
     System.Random rnd = new System.Random();
     bool gotHit = false;
     bool shatter = false;
@@ -16,10 +16,14 @@ public class BulbBoss : Enemy {
 
     GameObject heatWave;
     List<GameObject> heatBeams=new List<GameObject>();
+    GameObject luckyShot;
 
     protected  override void Start()
     {
         base.Start();
+        luckyShot = GameObject.Find("luckyShot");
+        luckyShot.SetActive(false);
+        camShake=GameObject.Find("Main Camera").GetComponent<CameraShake>();
         state = States.Intro;
         StartCoroutine(StateIntro());
 // HeatWave
@@ -85,7 +89,7 @@ public class BulbBoss : Enemy {
     {
         Debug.Log("Hot");
         heatWave.SetActive(true);
-        InvokeRepeating("HeatSpawn", 0f, 0.5f);
+        InvokeRepeating("HeatSpawn", 0f, 0.8f);
         while (!gotHit)
         {
             //Initialize HeatWave
@@ -103,6 +107,7 @@ public class BulbBoss : Enemy {
             g.SetActive(false);
         }
         heatWave.SetActive(false);
+        camShake.Shake(0.3f, 0.3f, 0.5f);
         yield return new WaitForSeconds(1f); //Play Transition Anim 
         state = States.Angry;
         StartCoroutine(StateAngry());
@@ -131,8 +136,9 @@ public class BulbBoss : Enemy {
         //enable collisions with walls
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Walls"), LayerMask.NameToLayer("BulbBoss"), false);
         
-        yield return new WaitForSeconds(1f); //bulb cooling down
-        if (transform.position.y > -4) //kill hight
+        yield return new WaitForSeconds(0.9f); //bulb cooling down
+        camShake.Shake(0.05f, 0.1f, 0.5f);
+        if (transform.position.y > 20) //kill hight
         {
             //yield return new WaitForSeconds(1.5f);
             state = States.Die;
@@ -188,9 +194,16 @@ public class BulbBoss : Enemy {
 
     void HeatSpawn()
     {
-
-
-       GameObject g = heatBeams[rnd.Next(heatBeams.Count)];
+        GameObject g;
+        if (rnd.Next(11) != 9)
+        {
+            g= heatBeams[rnd.Next(heatBeams.Count)];
+            
+        }
+        else //its ur lucky day
+        {
+            g = luckyShot;
+        }
         g.SetActive(false);
         g.SetActive(true);
     }
