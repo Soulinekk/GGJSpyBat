@@ -52,44 +52,6 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(DashCooldown());
             animator.SetTrigger("Dash");
-            
-
-
-
-
-
-
-            /*#region if's
-                if (h != 0)
-                {
-                    animator.SetBool("MovingH", true);
-                    animator.SetTrigger("Dash");
-                    StartCoroutine(DashCooldown());
-                    //StartCoroutine(Dash());
-            }
-                else
-                {
-                    animator.SetBool("MovingH", false);
-                    animator.SetTrigger("Dash");
-                    StartCoroutine(DashCooldown());
-                    //StartCoroutine(Dash());
-            }
-
-                if (v != 0)
-                {
-                    animator.SetBool("MovingV", true);
-                    animator.SetTrigger("Dash");
-                    StartCoroutine(DashCooldown());
-                    //StartCoroutine(Dash());
-            }
-                else
-                {
-                    animator.SetBool("MovingV", false);
-                    animator.SetTrigger("Dash");
-                    StartCoroutine(DashCooldown());
-                    //StartCoroutine(Dash());
-            }
-            #endregion*/
         }
         #endregion
     }
