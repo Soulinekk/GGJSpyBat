@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
+    public Animator anim;
+
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -13,5 +15,27 @@ public class PlayerCollisions : MonoBehaviour
             coll.gameObject.GetComponent<MBullet>().Reset();
         }
 
+
+
+        if (coll.gameObject.tag == "CameraMask")
+        {
+            anim.SetBool("CameraMask", true);
+            anim.SetBool("CameraMaskOff", false);
+            anim.SetBool("CameraMaskFast",false);
+        }
+
+        if (coll.gameObject.tag == "CameraMaskOff")
+        {
+            anim.SetBool("CameraMask", false);
+            anim.SetBool("CameraMaskOff", true);
+            anim.SetBool("CameraMaskFast", false);
+        }
+
+        if (coll.gameObject.tag == "CameraMaskFast")
+        {
+            anim.SetBool("CameraMask", false);
+            anim.SetBool("CameraMaskOff", false);
+            anim.SetBool("CameraMaskFast", true);
+        }
     }
 }
