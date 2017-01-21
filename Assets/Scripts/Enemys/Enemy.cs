@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
 
     public GameObject player;
 	// Use this for initialization
-	protected void Start () {
+	protected virtual void Start () {
         player = GameObject.Find("Player");
 	}
 	

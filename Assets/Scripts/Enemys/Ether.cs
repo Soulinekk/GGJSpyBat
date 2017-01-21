@@ -6,19 +6,19 @@ using UnityEngine;
 public class Ether : PathedEnemy
 {
 
-    protected IEnumerator MoveUP(int n)
+    protected override IEnumerator MoveUP(int n)
     {
         RotateTowardTarget(points[n]);
-        base.MoveUP(n);
+        StartCoroutine(base.MoveUP(n));
         yield return null;
 
 
     }
-    protected IEnumerator MoveStart()
+    protected override IEnumerator MoveStart()
     {
 
         RotateTowardTarget(startingPoint);
-        base.MoveStart();
+        StartCoroutine(base.MoveStart());
         yield return null;
     }
 

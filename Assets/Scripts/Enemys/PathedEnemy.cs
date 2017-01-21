@@ -9,7 +9,7 @@ public class PathedEnemy : Enemy {
     public Vector3 startingPoint = new Vector3(0, 0, 0);
     public Vector3[] points = new[] { new Vector3(0f, 0f, 0f) };
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         base.Start();
         transform.position = startingPoint;
@@ -20,7 +20,7 @@ public class PathedEnemy : Enemy {
         StartCoroutine(MoveUP(0));
     }
     // Update is called once per frame
-    protected IEnumerator MoveUP(int n)
+    protected virtual IEnumerator MoveUP(int n)
     {
         
 
@@ -39,7 +39,7 @@ public class PathedEnemy : Enemy {
 
     }
 
-    protected IEnumerator MoveStart()
+    protected virtual IEnumerator MoveStart()
     {
        
 
