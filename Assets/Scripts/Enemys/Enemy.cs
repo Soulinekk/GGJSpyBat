@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public abstract class Enemy : MonoBehaviour {
 
     public GameObject player;
 	// Use this for initialization

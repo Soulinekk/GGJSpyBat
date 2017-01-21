@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathedEnemy : Enemy {
+public abstract class PathedEnemy : Enemy {
 
     public float speed;
     public float waitTime = 2f;
     public Vector3 startingPoint = new Vector3(0, 0, 0);
     public Vector3[] points = new[] { new Vector3(0f, 0f, 0f) };
     // Use this for initialization
-    protected virtual void Start()
+    new protected virtual void Start()
     {
         base.Start();
         transform.position = startingPoint;

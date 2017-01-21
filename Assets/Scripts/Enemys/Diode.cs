@@ -41,7 +41,7 @@ public class Diode : Enemy {
 
     void Shot()
     {
-        Vector3 rot = transform.position-player.transform.position;
+        //Vector3 rot = transform.position-player.transform.position;
         bullet.SetActive(true);
         Quaternion rotation = Quaternion.LookRotation
              (player.transform.position - transform.position, transform.TransformDirection(Vector3.up));

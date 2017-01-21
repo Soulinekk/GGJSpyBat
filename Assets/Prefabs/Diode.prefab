@@ -39,9 +39,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4356201496298056}
   - component: {fileID: 50447610884052102}
-  - component: {fileID: 61455944286613350}
   - component: {fileID: 114609464840616726}
   - component: {fileID: 212627770026646490}
+  - component: {fileID: 61222584469241960}
   m_Layer: 0
   m_Name: bullet
   m_TagString: bullet
@@ -87,7 +87,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 0.0128
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
---- !u!61 &61455944286613350
+--- !u!61 &61222584469241960
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,11 +133,11 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.08, y: 0.08}
 --- !u!114 &114127562922306338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40193e3f4632c1548b19977b4eff00d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 10
   parent: {fileID: 0}
-  speed: 80
 --- !u!212 &212424742822402520
 SpriteRenderer:
   m_ObjectHideFlags: 1
