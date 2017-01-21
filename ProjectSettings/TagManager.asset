@@ -10,6 +10,7 @@ TagManager:
   - CameraMask
   - CameraMaskOff
   - CameraMaskFast
+  - Collectable
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - BGWall
   - Player
   - Bullets
-  - 
+  - Collectable
   - 
   - 
   - 

@@ -14,8 +14,17 @@ public class PlayerCollisions : MonoBehaviour
             Debug.Log("AyyyLmao");
             coll.gameObject.GetComponent<MBullet>().Reset();
         }
+        if (coll.gameObject.tag == "Collectable")
+        {
+            if (coll.name == "DataFly")
+            {
+                PlayerData.Points += 1;
+                coll.gameObject.SetActive(false);
+            }
+        }
 
 
+        #region camera related
 
         if (coll.gameObject.tag == "CameraMask")
         {
@@ -37,5 +46,6 @@ public class PlayerCollisions : MonoBehaviour
             anim.SetBool("CameraMaskOff", false);
             anim.SetBool("CameraMaskFast", true);
         }
+        #endregion
     }
 }
