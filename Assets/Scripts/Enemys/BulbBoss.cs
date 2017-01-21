@@ -89,12 +89,15 @@ public class BulbBoss : Enemy {
         while (!gotHit)
         {
             //Initialize HeatWave
-            
-            
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                gotHit = true;
+            }
             
             yield return null; 
             
         }
+        gotHit = false;
         foreach(GameObject g in heatBeams)
         {
             g.SetActive(false);
@@ -108,43 +111,59 @@ public class BulbBoss : Enemy {
     private IEnumerator StateAngry()
     {
         Debug.Log("Angry");
-        while (transform.position.y != player.transform.position.y)
+        while (Mathf.Abs(transform.position.x - player.transform.position.x)>0.2f)
         {
-            transform.position = new Vector3(transform.position.x, Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).y, transform.position.z);
+            transform.position = new Vector3(Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).x, transform.position.y, transform.position.z);
             yield return null;
         }
-        yield return new WaitForSeconds(1f); //buff Anim --> into Jump
+        yield return new WaitForSeconds(0.5f); //buff Anim --> into Jump
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        
         rb.AddForce(new Vector2(0f, jumpPower));
+        Physics2D.IgnoreLayerCollision(8, 10);
         //disable collision with walls
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Walls"), LayerMask.NameToLayer("BulbBoss"),true);//8-walls,12-bulbboss
-        while (rb.velocity.y > 0)
-            yield return null;
-        //enable collisions with walls
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Walls"), LayerMask.NameToLayer("BulbBoss"), false);
-        yield return new WaitForSeconds(1f); //bulb cooling down
-        if(transform.position.y>100000) //kill hight
+        //8-walls,10-bulbboss
+       // yield return new WaitForSeconds(0.5f);
+        while (rb.velocity.y > -1)
         {
+            yield return null;
+        }
+        //enable collisions with walls
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Walls"), LayerMask.NameToLayer("BulbBoss"), false);
+        
+        yield return new WaitForSeconds(1f); //bulb cooling down
+        if (transform.position.y > -4) //kill hight
+        {
+            //yield return new WaitForSeconds(1.5f);
             state = States.Die;
             StartCoroutine(StateDie());
         }
         else
         {
+            yield return new WaitForSeconds(2f);
             state = States.Hot;
             StartCoroutine(StateHot());
         }
-        
+
     }
 
     private IEnumerator StateDie()
     {
         Debug.Log("Die");
+        heatWave.SetActive(true);
+        InvokeRepeating("HeatSpawn", 0f, 0.5f);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        while (rb.velocity.y>-0.2)
+        while (rb.velocity.y>-2)
         {
-            transform.position = new Vector3(transform.position.x, Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).y, transform.position.z);
+            transform.position = new Vector3(Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).x, transform.position.y, transform.position.z);
+            
+            
             yield return null;
         }
+        state = States.Dead;
+        Debug.Log("DEAD");
+        CancelInvoke("HeatSpawn");
+        heatWave.SetActive(false);
         shatter = true;
         
     }
