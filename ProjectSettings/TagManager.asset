@@ -7,6 +7,9 @@ TagManager:
   - bullet
   - wall
   - enemy
+  - CameraMask
+  - CameraMaskOff
+  - CameraMaskFast
   layers:
   - Default
   - TransparentFX
