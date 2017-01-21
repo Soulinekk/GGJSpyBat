@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollisions : MonoBehaviour
 {
     public Animator anim;
+    public float fallingSpeed = 10;
 
 
     void OnTriggerEnter2D(Collider2D coll)
@@ -22,7 +24,11 @@ public class PlayerCollisions : MonoBehaviour
                 coll.gameObject.SetActive(false);
             }
         }
+        if (coll.gameObject.tag == "enemy")
+        {
 
+            Death();
+        }
 
         #region camera related
 
@@ -47,5 +53,26 @@ public class PlayerCollisions : MonoBehaviour
             anim.SetBool("CameraMaskFast", true);
         }
         #endregion
+    }
+
+    public void Death()
+    {
+        gameObject.GetComponent<Animator>().enabled = false;
+        gameObject.GetComponent<PlayerMovement>().enabled = false;
+        StartCoroutine(LateDeath());
+    }
+
+    IEnumerator LateDeath()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject.Find("Main Camera").GetComponent<CameraFollow>().shouldFollow = false;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+        StartCoroutine(RestartLevel());
+    }
+
+    IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
     }
 }
