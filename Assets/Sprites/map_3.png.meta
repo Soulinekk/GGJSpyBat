@@ -1,15 +1,9 @@
 fileFormatVersion: 2
-guid: 8afdb5d36f0d69a438a73bcd9cc08957
-timeCreated: 1484953233
+guid: 1f9bf668c8156084988f716626a7cb79
+timeCreated: 1484971972
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: map_1_0
-    21300002: map_1_1
-    21300004: map_1_2
-    21300006: map_1_3
-    21300008: map_1_4
-    21300010: map_1_5
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -40,7 +34,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -104,6 +98,14 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   - buildTarget: WebGL
     maxTextureSize: 2048
     textureFormat: -1
@@ -120,95 +122,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: map_1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2014
-        height: 1920
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: map_1_1
-      rect:
-        serializedVersion: 2
-        x: 2397
-        y: 1105
-        width: 82
-        height: 296
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: map_1_2
-      rect:
-        serializedVersion: 2
-        x: 2722
-        y: 599
-        width: 196
-        height: 840
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: map_1_3
-      rect:
-        serializedVersion: 2
-        x: 2264
-        y: 1008
-        width: 120
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: map_1_4
-      rect:
-        serializedVersion: 2
-        x: 2460
-        y: 990
-        width: 119
-        height: 70
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: map_1_5
-      rect:
-        serializedVersion: 2
-        x: 2382
-        y: 651
-        width: 92
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 

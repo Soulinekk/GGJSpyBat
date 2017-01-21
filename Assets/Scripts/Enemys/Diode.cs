@@ -5,14 +5,17 @@ using UnityEngine;
 public class Diode : Enemy {
     // Use this for initialization
     public GameObject bullet;
-	void Start () {
+	void Awake () {
         base.Start();
-        bullet.SetActive(false);
+        bullet = GetComponentInChildren<DiodeBullet>().gameObject;
+        
+        
         }
         // Debug.Log(radar.name);
     
 	
 	// Update is called once per frame
+    void Start() { bullet.SetActive(false); }
 	void Update () {
 		
 	}

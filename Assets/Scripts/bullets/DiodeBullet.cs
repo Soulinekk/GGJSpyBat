@@ -14,7 +14,7 @@ public class DiodeBullet : MBullet {
         rb = GetComponent<Rigidbody2D>();
         stop = true;
         player = GameObject.Find("Player");
-       // parent = GetComponentInParent<Diode>().gameObject;
+        parent = transform.parent.gameObject;
     }
     void OnEnable()
     {
