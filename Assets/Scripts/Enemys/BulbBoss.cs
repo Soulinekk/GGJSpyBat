@@ -11,7 +11,7 @@ public class BulbBoss : Enemy {
     System.Random rnd = new System.Random();
     bool gotHit = false;
     bool shatter = false;
-    public bool introend = false;
+    public bool introend = true;
     public float angrySpeed;
     public float jumpPower;
 
@@ -112,7 +112,7 @@ public class BulbBoss : Enemy {
             g.SetActive(false);
         }
         heatWave.SetActive(false);
-       // camShake.Shake(0.3f, 0.3f, 0.5f);
+        camShake.ShakeCamera(0.2f, 0.2f);
         yield return new WaitForSeconds(1f); //Play Transition Anim 
         state = States.Angry;
         StartCoroutine(StateAngry());
@@ -142,7 +142,7 @@ public class BulbBoss : Enemy {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("BGWall"), LayerMask.NameToLayer("BulbBoss"), false); //8,11
         
         yield return new WaitForSeconds(0.9f); //bulb cooling down
-       // camShake.Shake(0.05f, 0.1f, 0.5f);
+        
         if (transform.localPosition.y > 50) //kill hight
         {
             //yield return new WaitForSeconds(1.5f);
@@ -182,9 +182,13 @@ public class BulbBoss : Enemy {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Wall" && shatter)
+        if (col.gameObject.tag == "wall" && shatter)
         {
             state = States.Dead;
+        }
+        if (col.gameObject.tag == "BGWall")
+        {
+            camShake.ShakeCamera(0.1f, 0.1f);
         }
     }
     void OnTriggerEnter2D(Collider2D coll)

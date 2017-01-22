@@ -12,6 +12,7 @@ TagManager:
   - CameraMaskFast
   - Collectable
   - BG
+  - BGWall
   layers:
   - Default
   - TransparentFX
