@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114127562922306338}
   - component: {fileID: 58581314384863620}
   - component: {fileID: 82245958567298074}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Diode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114609464840616726}
   - component: {fileID: 212627770026646490}
   - component: {fileID: 61222584469241960}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: bullet
   m_TagString: bullet
   m_Icon: {fileID: 0}
@@ -56,9 +56,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202271186098126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.47, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4356201496298056}
   m_Father: {fileID: 0}
@@ -151,7 +151,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0d8db47065043864982de96ae1e74290, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
-  m_Pitch: 0.2
+  m_Pitch: 0.89
   Loop: 0
   Mute: 0
   Spatialize: 0
