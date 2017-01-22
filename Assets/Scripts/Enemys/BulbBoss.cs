@@ -32,8 +32,7 @@ public class BulbBoss : Enemy {
     protected  override void Start()
     {
         base.Start();
-         anim = GetComponent<Animator>();
-
+         
         luckyShot = GameObject.Find("luckyShot");
         luckyShot.SetActive(false);
         camShake=GameObject.Find("Main Camera").GetComponent<CameraShake>();
@@ -83,7 +82,7 @@ public class BulbBoss : Enemy {
         }
         camShake.ShakeCamera(0.3f, 0.1f);
         initSound.Play();
-        anim.SetTrigger("Acitivate");
+        anim.SetTrigger("Activate");
         yield return new WaitForSeconds(1f);  //PlayIntro
         state = States.Angry;
         StartCoroutine(StateAngry());
@@ -127,7 +126,7 @@ public class BulbBoss : Enemy {
             yield return null;
         }
         jumpSound.Play();
-        anim.ResetTrigger("Jump");
+       // anim.ResetTrigger("Jump");
         yield return new WaitForSeconds(2f); //buff Anim --> into Jump
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         

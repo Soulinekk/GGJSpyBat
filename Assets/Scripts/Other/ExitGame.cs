@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ExitGame : MonoBehaviour {
 
+    bool pause;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +13,18 @@ public class ExitGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pause)
+            {
+                Time.timeScale = 0;
+
+            }
+            else
+            {
+
+                Time.timeScale = 1;
+            }
+        }
 	}
 }
