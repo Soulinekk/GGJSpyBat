@@ -6,7 +6,6 @@ public class Room : MonoBehaviour {
 
     Animator anim;
     bool StartExit;
-    float dampTime;
     float dampProgress;
     public Transform[] masks;
     bool canQuit;
@@ -16,7 +15,6 @@ public class Room : MonoBehaviour {
         anim =GetComponent<Animator>();
         anim=GetComponent<Animator>();
         anim = GetComponent<Animator>();
-        dampTime = 0;
         dampProgress = 0;
         StartExit = true;
         canQuit = true;

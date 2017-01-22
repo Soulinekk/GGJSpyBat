@@ -9,13 +9,19 @@ public class PlayerCollisions : MonoBehaviour
     public Animator anim;
     public float fallingSpeed = 10;
 
-
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "enemy")
+        {
+            Death();
+        }
+    }
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "bullet")
         {
-           // Death();
-            coll.gameObject.transform.localScale = new Vector3(10f, 10f, 10f);
+            Death();
+            //coll.gameObject.transform.localScale = new Vector3(10f, 10f, 10f);
         }
         if (coll.gameObject.tag == "Collectable")
         {
@@ -34,8 +40,8 @@ public class PlayerCollisions : MonoBehaviour
         if (coll.gameObject.tag == "enemy")
         {
 
-           // Death();
-            coll.gameObject.transform.localScale = new Vector3(10f, 10f, 10f);
+            Death();
+            //coll.gameObject.transform.localScale = new Vector3(10f, 10f, 10f);
         }
 
         #region camera related

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulbBoss : Enemy {
     
@@ -84,7 +85,7 @@ public class BulbBoss : Enemy {
         camShake.ShakeCamera(0.3f, 0.1f);
         initSound.Play();
         anim.SetTrigger("Activate");
-        yield return new WaitForSeconds(4f);  //PlayIntro
+        yield return new WaitForSeconds(5f);  //PlayIntro
         state = States.Angry;
         StartCoroutine(StateAngry());
     }
@@ -121,20 +122,34 @@ public class BulbBoss : Enemy {
             transform.position = new Vector3(Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).x, transform.position.y, transform.position.z);
             yield return null;
         }
-        jumpSound.Play();
-       // anim.ResetTrigger("Jump");
+        
+        anim.SetTrigger("Jump");
         yield return new WaitForSeconds(2f); //buff Anim --> into Jump
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        
-        rb.AddForce(new Vector2(0f, jumpPower));
-        Physics2D.IgnoreLayerCollision(10, 11);//BullBoss-10 , BGWall-11pi
+        if (transform.position.y < player.transform.position.y)
+        {
+            jumpSound.Play();
+            rb.AddForce(new Vector2(0f, jumpPower));
+            Physics2D.IgnoreLayerCollision(10, 11);
+            while (rb.velocity.y > -1)
+            {
+                yield return null;
+            }
+            yield return null;
+        }
+        else
+        {
+            if (transform.position.y > -2)
+            {
+                Physics2D.IgnoreLayerCollision(10, 11);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        //BullBoss-10 , BGWall-11pi
         //disable collision with walls
         //8-walls,10-bulbboss
        // yield return new WaitForSeconds(0.5f);
-        while (rb.velocity.y > -1)
-        {
-            yield return null;
-        }
+        
         //enable collisions with walls
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("BGWall"), LayerMask.NameToLayer("BulbBoss"), false); //8,11
         
@@ -182,7 +197,11 @@ public class BulbBoss : Enemy {
         state = States.Dead;
         Debug.Log("DEAD");
         CancelInvoke("HeatSpawn");
-       // heatWave.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        // heatWave.SetActive(false);
         shatter = true;
         
     }
@@ -196,18 +215,12 @@ public class BulbBoss : Enemy {
         }
         if (col.gameObject.tag == "BGWall")
         {
-            camShake.ShakeCamera(0.1f, 0.1f);
+            if (state==States.Angry) {
+                camShake.ShakeCamera(0.1f, 0.1f);
+            }
         }
     }
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-        if (coll.gameObject.tag == "bossKiller")
-        {
-            Debug.Log("shjeeeet");
-            gotHit = true;
-        }
-
-    }
+    
 
     void HeatSpawn()
     {

@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 212303448478753826}
   - component: {fileID: 114461603456160666}
   - component: {fileID: 50748692605499126}
-  - component: {fileID: 61164022740551252}
   - component: {fileID: 82676697563845712}
-  m_Layer: 0
+  - component: {fileID: 58878715267811952}
+  m_Layer: 9
   m_Name: Impulse
-  m_TagString: bullet
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,9 +37,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1726688138529994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.2, y: 5.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 0.36316815
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -64,8 +64,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61164022740551252
-BoxCollider2D:
+--- !u!58 &58878715267811952
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -73,11 +73,11 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Radius: 0.34
 --- !u!82 &82676697563845712
 AudioSource:
   m_ObjectHideFlags: 1
@@ -170,13 +170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 3
-  waitTime: 0.1
-  startingPoint: {x: -0.3, y: -4.3, z: 0}
+  speed: 4.1
+  waitTime: 0
+  delayTime: 2
+  startingPoint: {x: 14.2, y: -4.6, z: 0}
   points:
-  - {x: -3.8, y: -4.3, z: 0}
-  - {x: -3.8, y: 0.9, z: 0}
-  - {x: 0.1, y: 0.9, z: 0}
+  - {x: 14.2, y: 5.2, z: 0}
+  - {x: 14.2, y: -4.2, z: 0}
 --- !u!212 &212303448478753826
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -207,8 +207,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 0e555e85cb7ded04180ddb926bc9b01a, type: 3}
+  m_SortingOrder: -2
+  m_Sprite: {fileID: 21300004, guid: c706dba9003ca6b42ad82bdaa3cc88cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
