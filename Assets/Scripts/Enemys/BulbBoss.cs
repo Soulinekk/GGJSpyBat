@@ -107,7 +107,7 @@ public class BulbBoss : Enemy {
             g.SetActive(false);
         }
         heatWave.SetActive(false);
-        camShake.Shake(0.3f, 0.3f, 0.5f);
+       // camShake.Shake(0.3f, 0.3f, 0.5f);
         yield return new WaitForSeconds(1f); //Play Transition Anim 
         state = States.Angry;
         StartCoroutine(StateAngry());
@@ -125,7 +125,7 @@ public class BulbBoss : Enemy {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         
         rb.AddForce(new Vector2(0f, jumpPower));
-        Physics2D.IgnoreLayerCollision(8, 10);
+        Physics2D.IgnoreLayerCollision(10, 11);//BullBoss-10 , BGWall-11pi
         //disable collision with walls
         //8-walls,10-bulbboss
        // yield return new WaitForSeconds(0.5f);
@@ -134,11 +134,11 @@ public class BulbBoss : Enemy {
             yield return null;
         }
         //enable collisions with walls
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Walls"), LayerMask.NameToLayer("BulbBoss"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("BGWall"), LayerMask.NameToLayer("BulbBoss"), false); //8,11
         
         yield return new WaitForSeconds(0.9f); //bulb cooling down
-        camShake.Shake(0.05f, 0.1f, 0.5f);
-        if (transform.position.y > 20) //kill hight
+       // camShake.Shake(0.05f, 0.1f, 0.5f);
+        if (transform.localPosition.y > 50) //kill hight
         {
             //yield return new WaitForSeconds(1.5f);
             state = States.Die;
