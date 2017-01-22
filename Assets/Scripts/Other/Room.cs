@@ -50,6 +50,11 @@ public class Room : MonoBehaviour {
         }
 	}
 
+    public void ScreenShake()
+    {
+        GameObject.Find("Main Camera").GetComponent<CameraShake>().ShakeCamera(0.1f,0.1f);
+    }
+
     void MissionStart()
     {
         Debug.Log("mission start");
