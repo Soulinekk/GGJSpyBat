@@ -55,6 +55,13 @@ public class PlayerCollisions : MonoBehaviour
         #endregion
     }
 
+    public void TurnOnMask()
+    {
+        anim.SetBool("CameraMask", true);
+        anim.SetBool("CameraMaskOff", false);
+        anim.SetBool("CameraMaskFast", false);
+    }
+
     public void Death()
     {
         gameObject.GetComponent<Animator>().enabled = false;
