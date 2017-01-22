@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ddbe4382ea32fa04c94a4f1ce3eb24ef
-timeCreated: 1485056237
+timeCreated: 1485081102
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -18,6 +18,8 @@ TextureImporter:
     21300022: menuextra_15
     21300024: menuextra_16
     21300026: menuextra_10
+    21300028: menuextra_11
+    21300030: menuextra_12
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -131,19 +133,6 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: menuextra_0
-      rect:
-        serializedVersion: 2
-        x: 413
-        y: 1201
-        width: 849
-        height: 239
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
     - serializedVersion: 2
       name: menuextra_1
       rect:
@@ -308,6 +297,45 @@ TextureImporter:
         y: 192
         width: 591
         height: 522
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menuextra_0
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 1212
+        width: 384
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menuextra_11
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1205
+        width: 157
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: menuextra_12
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 1220
+        width: 276
+        height: 207
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

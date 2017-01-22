@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 58e954e409153a14ebd3eb779409757c
-timeCreated: 1485078868
+guid: 6bcb71f1a3f65ab43b0f42f8df321592
+timeCreated: 1485083937
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: exiiiitttt_0
-    21300002: exiiiitttt_1
+    21300000: Let Him Fall_0
+    21300002: Let Him Fall_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -120,26 +120,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: exiiiitttt_0
+      name: Let Him Fall_0
       rect:
         serializedVersion: 2
-        x: 947
-        y: 484
-        width: 697
-        height: 220
+        x: 22
+        y: 660
+        width: 1297
+        height: 204
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: exiiiitttt_1
+      name: Let Him Fall_1
       rect:
         serializedVersion: 2
-        x: 1852
-        y: 1104
-        width: 250
-        height: 211
+        x: 0
+        y: 23
+        width: 1261
+        height: 536
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -62,6 +62,7 @@ public class Room : MonoBehaviour {
         // Invoke("CameraSizeDamp", 0.05f);
         StartCoroutine(CameraSizeDamp());
         GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+        GameObject.Find("Player").GetComponent<ExitGame>().enabled = true;
 
         Destroy(gameObject, 5f);
     }
