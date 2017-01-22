@@ -6,6 +6,7 @@ public abstract class PathedEnemy : Enemy {
 
     public float speed;
     public float waitTime = 2f;
+    public float delayTime=0f;
     public Vector3 startingPoint = new Vector3(0, 0, 0);
     public Vector3[] points = new[] { new Vector3(0f, 0f, 0f) };
     // Use this for initialization
@@ -13,7 +14,7 @@ public abstract class PathedEnemy : Enemy {
     {
         base.Start();
         transform.position = startingPoint;
-        Invoke("Begin", 2);
+        Invoke("Begin", delayTime);
     }
     void Begin()
     {
