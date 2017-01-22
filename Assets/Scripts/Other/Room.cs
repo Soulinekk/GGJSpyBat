@@ -36,7 +36,6 @@ public class Room : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Return) || (Input.GetKeyDown(KeyCode.Space)))
         {
-            Debug.Log("bla");
             if (StartExit == true)
             {
                 canQuit = false;
