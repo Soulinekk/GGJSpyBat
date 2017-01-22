@@ -11,6 +11,7 @@ public class BulbBoss : Enemy {
     System.Random rnd = new System.Random();
     bool gotHit = false;
     bool shatter = false;
+    public bool introend = false;
     public float angrySpeed;
     public float jumpPower;
 
@@ -80,6 +81,10 @@ public class BulbBoss : Enemy {
     private IEnumerator StateIntro()
     {
         Debug.Log("Intro");
+        while (!introend)
+        {
+            yield return null;
+        }
         yield return new WaitForSeconds(2f);  //PlayIntro
         state = States.Angry;
         StartCoroutine(StateAngry());
