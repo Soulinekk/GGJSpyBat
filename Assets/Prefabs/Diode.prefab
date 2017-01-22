@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114127562922306338}
   - component: {fileID: 58581314384863620}
   - component: {fileID: 82245958567298074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Diode
   m_TagString: Untagged
   m_Icon: {fileID: 0}

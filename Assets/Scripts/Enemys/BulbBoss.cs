@@ -27,6 +27,7 @@ public class BulbBoss : Enemy {
    // public AudioSource DyingSound;
     public AudioSource ShotingSound;
     public AudioSource jumpSound;
+    public AudioSource bg;
     //public AudioSource initSound;
 
     protected  override void Start()
@@ -83,7 +84,7 @@ public class BulbBoss : Enemy {
         camShake.ShakeCamera(0.3f, 0.1f);
         initSound.Play();
         anim.SetTrigger("Activate");
-        yield return new WaitForSeconds(1f);  //PlayIntro
+        yield return new WaitForSeconds(4f);  //PlayIntro
         state = States.Angry;
         StartCoroutine(StateAngry());
     }
@@ -103,11 +104,6 @@ public class BulbBoss : Enemy {
         }
         gotHit = false;
         CancelInvoke("HeatSpawn");
-        //foreach (GameObject g in heatBeams)
-       // {
-        //    g.SetActive(false);
-       // }
-        //heatWave.SetActive(false);
         CancelInvoke("PlayShotingSound");
 
        camShake.ShakeCamera(0.2f, 0.2f);
@@ -144,7 +140,7 @@ public class BulbBoss : Enemy {
         
         yield return new WaitForSeconds(0.9f); //bulb cooling down
         
-        if (transform.localPosition.y > 25) //kill hight
+        if (transform.localPosition.y > 40) //kill hight
         {
             //yield return new WaitForSeconds(1.5f);
             state = States.Die;
@@ -165,13 +161,24 @@ public class BulbBoss : Enemy {
       //  heatWave.SetActive(true);
         InvokeRepeating("HeatSpawn", 0f, 0.05f);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        while (rb.velocity.y>-2)
+        while (rb.velocity.y>-1)
         {
+            
             transform.position = new Vector3(Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).x, transform.position.y, transform.position.z);
             
             
             yield return null;
         }
+        jumpSound.Stop();
+        initSound.Stop();
+        angrySound.Stop();
+        bg.Stop();
+        // public AudioSource DyingSound;
+        ShotingSound.Stop();
+        Destroy(player.GetComponent<Collider2D>());
+        GameObject.Find("Main Camera").GetComponent<Animator>().ResetTrigger("CameraMaskOff");
+        yield return new WaitForSeconds(0.3f);
+    Time.timeScale = 0.2f;
         state = States.Dead;
         Debug.Log("DEAD");
         CancelInvoke("HeatSpawn");
@@ -206,7 +213,7 @@ public class BulbBoss : Enemy {
     {
         
         //GameObject g;
-        if (rnd.Next(50) != 9)
+        if (rnd.Next(20) != 9)
         {
             // g= heatBeams[rnd.Next(heatBeams.Count)];
             Instantiate(heatBullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, rnd.Next(-160,160))), transform);

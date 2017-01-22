@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class MBullet : MonoBehaviour {
 
     protected Rigidbody2D rb;
-    public float bulletSpeed=100;
+    public float bulletSpeed=1;
     protected Vector2 startingPos;
     public virtual void Reset(){
         transform.localPosition=startingPos;

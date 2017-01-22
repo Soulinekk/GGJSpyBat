@@ -14,8 +14,8 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (coll.gameObject.tag == "bullet")
         {
-            Death();
-            //coll.gameObject.GetComponent<MBullet>().Reset();
+           // Death();
+            coll.gameObject.transform.localScale = new Vector3(10f, 10f, 10f);
         }
         if (coll.gameObject.tag == "Collectable")
         {
@@ -26,6 +26,7 @@ public class PlayerCollisions : MonoBehaviour
             else if (coll.name == "luckyShot")
             {
                 boss.gotHit = true;
+                coll.transform.localRotation = Quaternion.Euler(Vector3.zero);
                 coll.gameObject.SetActive(false);
 
             }
@@ -33,7 +34,8 @@ public class PlayerCollisions : MonoBehaviour
         if (coll.gameObject.tag == "enemy")
         {
 
-            Death();
+           // Death();
+            coll.gameObject.transform.localScale = new Vector3(10f, 10f, 10f);
         }
 
         #region camera related
