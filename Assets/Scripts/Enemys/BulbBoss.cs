@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulbBoss : Enemy {
+    
+    public Animator anim;
 
     public enum States { Intro, Hot, Angry, Die,Dead }
     States state;
@@ -30,11 +32,14 @@ public class BulbBoss : Enemy {
     protected  override void Start()
     {
         base.Start();
+         anim = GetComponent<Animator>();
+
         luckyShot = GameObject.Find("luckyShot");
         luckyShot.SetActive(false);
         camShake=GameObject.Find("Main Camera").GetComponent<CameraShake>();
         state = States.Intro;
         StartCoroutine(StateIntro());
+        
 
     }
     // Update is called once per frame
@@ -71,13 +76,15 @@ public class BulbBoss : Enemy {
     private IEnumerator StateIntro()
     {
         Debug.Log("Intro");
-        camShake.ShakeCamera(0.3f, 0.1f);
+        
         while (!introend)
         {
             yield return null;
         }
+        camShake.ShakeCamera(0.3f, 0.1f);
         initSound.Play();
-        yield return new WaitForSeconds(2f);  //PlayIntro
+        anim.SetTrigger("Acitivate");
+        yield return new WaitForSeconds(1f);  //PlayIntro
         state = States.Angry;
         StartCoroutine(StateAngry());
     }
@@ -85,6 +92,7 @@ public class BulbBoss : Enemy {
     private IEnumerator StateHot()
     {
         Debug.Log("Hot");
+        anim.SetTrigger("Attack");
        // heatWave.SetActive(true);
         InvokeRepeating("HeatSpawn", 0f, 0.3f);
         InvokeRepeating("PlayShotingSound", 0f, 14f);
@@ -119,7 +127,8 @@ public class BulbBoss : Enemy {
             yield return null;
         }
         jumpSound.Play();
-        yield return new WaitForSeconds(0.5f); //buff Anim --> into Jump
+        anim.ResetTrigger("Jump");
+        yield return new WaitForSeconds(2f); //buff Anim --> into Jump
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         
         rb.AddForce(new Vector2(0f, jumpPower));
