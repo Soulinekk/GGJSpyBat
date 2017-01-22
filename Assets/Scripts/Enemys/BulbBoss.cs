@@ -15,9 +15,16 @@ public class BulbBoss : Enemy {
     public float angrySpeed;
     public float jumpPower;
 
-    GameObject heatWave;
-    List<GameObject> heatBeams=new List<GameObject>();
+    public GameObject heatBullet;
+    //List<GameObject> heatBeams=new List<GameObject>();
     GameObject luckyShot;
+
+    public AudioSource initSound;
+    public AudioSource angrySound;
+   // public AudioSource DyingSound;
+    public AudioSource ShotingSound;
+    public AudioSource jumpSound;
+    //public AudioSource initSound;
 
     protected  override void Start()
     {
@@ -27,26 +34,8 @@ public class BulbBoss : Enemy {
         camShake=GameObject.Find("Main Camera").GetComponent<CameraShake>();
         state = States.Intro;
         StartCoroutine(StateIntro());
-// HeatWave
-        foreach(Transform o in GetComponentsInChildren<Transform>())
-        {
-            if (o.gameObject.name == "HeatWave")
-            {
-                heatWave = o.gameObject;
-                break;
-            }
-        }
-        foreach(MBullet b in heatWave.GetComponentsInChildren<MBullet>())
-        {
-            heatBeams.Add(b.gameObject);
-            b.gameObject.SetActive(false);
-           
-        }
-        heatWave.SetActive(false);
-//
+
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -81,10 +70,12 @@ public class BulbBoss : Enemy {
     private IEnumerator StateIntro()
     {
         Debug.Log("Intro");
+        camShake.ShakeCamera(0.3f, 0.1f);
         while (!introend)
         {
             yield return null;
         }
+        initSound.Play();
         yield return new WaitForSeconds(2f);  //PlayIntro
         state = States.Angry;
         StartCoroutine(StateAngry());
@@ -93,8 +84,9 @@ public class BulbBoss : Enemy {
     private IEnumerator StateHot()
     {
         Debug.Log("Hot");
-        heatWave.SetActive(true);
-        InvokeRepeating("HeatSpawn", 0f, 0.8f);
+       // heatWave.SetActive(true);
+        InvokeRepeating("HeatSpawn", 0f, 0.3f);
+        InvokeRepeating("PlayShotingSound", 0f, 14f);
         while (!gotHit)
         {
             //Initialize HeatWave
@@ -107,12 +99,16 @@ public class BulbBoss : Enemy {
             
         }
         gotHit = false;
-        foreach(GameObject g in heatBeams)
-        {
-            g.SetActive(false);
-        }
-        heatWave.SetActive(false);
-        camShake.ShakeCamera(0.2f, 0.2f);
+        CancelInvoke("HeatSpawn");
+        //foreach (GameObject g in heatBeams)
+       // {
+        //    g.SetActive(false);
+       // }
+        //heatWave.SetActive(false);
+        CancelInvoke("PlayShotingSound");
+
+       camShake.ShakeCamera(0.2f, 0.2f);
+        angrySound.Play();
         yield return new WaitForSeconds(1f); //Play Transition Anim 
         state = States.Angry;
         StartCoroutine(StateAngry());
@@ -126,6 +122,7 @@ public class BulbBoss : Enemy {
             transform.position = new Vector3(Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).x, transform.position.y, transform.position.z);
             yield return null;
         }
+        jumpSound.Play();
         yield return new WaitForSeconds(0.5f); //buff Anim --> into Jump
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         
@@ -161,8 +158,8 @@ public class BulbBoss : Enemy {
     private IEnumerator StateDie()
     {
         Debug.Log("Die");
-        heatWave.SetActive(true);
-        InvokeRepeating("HeatSpawn", 0f, 0.5f);
+      //  heatWave.SetActive(true);
+        InvokeRepeating("HeatSpawn", 0f, 0.05f);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         while (rb.velocity.y>-2)
         {
@@ -174,7 +171,7 @@ public class BulbBoss : Enemy {
         state = States.Dead;
         Debug.Log("DEAD");
         CancelInvoke("HeatSpawn");
-        heatWave.SetActive(false);
+       // heatWave.SetActive(false);
         shatter = true;
         
     }
@@ -203,17 +200,24 @@ public class BulbBoss : Enemy {
 
     void HeatSpawn()
     {
-        GameObject g;
-        if (rnd.Next(11) != 9)
+        
+        //GameObject g;
+        if (rnd.Next(50) != 9)
         {
-            g= heatBeams[rnd.Next(heatBeams.Count)];
-            
+            // g= heatBeams[rnd.Next(heatBeams.Count)];
+            Instantiate(heatBullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, rnd.Next(-160,160))), transform);
+           // g = luckyShot;
         }
         else //its ur lucky day
         {
-            g = luckyShot;
+            luckyShot.SetActive(true);
+            //g = luckyShot;
+
         }
-        g.SetActive(false);
-        g.SetActive(true);
+       // g.SetActive(false);
+       // g.SetActive(true);
+    }
+    void PlayShotingSound() {
+        ShotingSound.Play();
     }
 }

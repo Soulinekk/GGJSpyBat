@@ -7,11 +7,13 @@ public class HeatWaveBullet : MBullet {
 
     public override void Reset()
     {
-        transform.localPosition = startingPos;
+        //transform.localPosition = startingPos;
+        Destroy(gameObject);
     }
     protected override void OnEnable()
     {
         base.OnEnable();
+        StartCoroutine(Deactive());
     }
     void OnDisable()
     {
