@@ -22,5 +22,5 @@ public abstract class MBullet : MonoBehaviour {
         rb.AddForce(transform.up * bulletSpeed);
         
     }
-    protected virtual IEnumerator Deactive() { yield return new WaitForSeconds(8f); Reset(); }
+    protected virtual IEnumerator Deactive() { yield return new WaitForSeconds(15f); Reset(); }
 }

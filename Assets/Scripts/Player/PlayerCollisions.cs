@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCollisions : MonoBehaviour
 {
+    public BulbBoss boss;
     public Animator anim;
     public float fallingSpeed = 10;
 
@@ -13,15 +14,20 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (coll.gameObject.tag == "bullet")
         {
-            Debug.Log("AyyyLmao");
-            coll.gameObject.GetComponent<MBullet>().Reset();
+            Death();
+            //coll.gameObject.GetComponent<MBullet>().Reset();
         }
         if (coll.gameObject.tag == "Collectable")
         {
-            if (coll.name == "DataFly")
+            if (coll.name == "BossTrigger")
             {
-                PlayerData.Points += 1;
+                boss.StartFight();
+            }
+            else if (coll.name == "luckyShot")
+            {
+                boss.gotHit = true;
                 coll.gameObject.SetActive(false);
+
             }
         }
         if (coll.gameObject.tag == "enemy")

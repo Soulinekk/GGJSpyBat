@@ -9,9 +9,10 @@ public class BulbBoss : Enemy {
     States state;
     CameraShake camShake;
     System.Random rnd = new System.Random();
-    bool gotHit = false;
+    public bool gotHit = false;
     bool shatter = false;
-    public bool introend = true;
+    private bool introend = false;
+    public void StartFight() { introend = true; }
     public float angrySpeed;
     public float jumpPower;
 
@@ -89,11 +90,6 @@ public class BulbBoss : Enemy {
         InvokeRepeating("PlayShotingSound", 0f, 14f);
         while (!gotHit)
         {
-            //Initialize HeatWave
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                gotHit = true;
-            }
             
             yield return null; 
             
@@ -140,7 +136,7 @@ public class BulbBoss : Enemy {
         
         yield return new WaitForSeconds(0.9f); //bulb cooling down
         
-        if (transform.localPosition.y > 50) //kill hight
+        if (transform.localPosition.y > 25) //kill hight
         {
             //yield return new WaitForSeconds(1.5f);
             state = States.Die;

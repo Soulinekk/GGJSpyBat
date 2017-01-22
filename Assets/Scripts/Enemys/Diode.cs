@@ -17,10 +17,10 @@ public class Diode : Enemy {
     
 	
 	// Update is called once per frame
-    void Start() { bullet.SetActive(false); }
-	void Update () {
+    protected override void Start() { bullet.SetActive(false); }
+	//protected override void Update () {
 		
-	}
+	//}
 
 
     void OnTriggerEnter2D(Collider2D coll)
