@@ -40,7 +40,7 @@ public class Room : MonoBehaviour {
             if (StartExit == true)
             {
                 canQuit = false;
-                MissionStart();
+                anim.SetTrigger("Mission");
             }
             else
             if (canQuit == true)
@@ -52,6 +52,7 @@ public class Room : MonoBehaviour {
 
     void MissionStart()
     {
+        Debug.Log("mission start");
         GameObject.Find("Player").GetComponent<PlayerCollisions>().TurnOnMask();
         GameObject.Find("Main Camera").GetComponent<CameraFollow>().shouldFollow = true;
         // Invoke("CameraSizeDamp", 0.05f);

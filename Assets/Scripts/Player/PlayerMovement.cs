@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DashCooldown()
     {
         canUseDash = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.7f);
         canUseDash = true;
     }
 }
