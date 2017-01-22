@@ -11,6 +11,7 @@ public class DiodeBullet : MBullet {
     protected override void Awake()
     {
         base.Awake();
+       // bulletSpeed = 10;
         stop = true;
         player = GameObject.Find("Player");
         parent = transform.parent.gameObject;

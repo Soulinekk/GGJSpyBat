@@ -5,8 +5,10 @@ using UnityEngine;
 public class Diode : Enemy {
     // Use this for initialization
     public GameObject bullet;
+    AudioSource shootSound;
 	void Awake () {
         base.Start();
+        shootSound = GetComponent<AudioSource>();
         bullet = GetComponentInChildren<DiodeBullet>().gameObject;
         
         
@@ -35,14 +37,18 @@ public class Diode : Enemy {
     {
         if (coll.gameObject.name == "Player")
         {
+           
             CancelInvoke("Shot");
         }
     }
 
     void Shot()
     {
+        if(Vector3.Distance(transform.position,player.transform.position)<8)
+            shootSound.Play();
         //Vector3 rot = transform.position-player.transform.position;
         bullet.SetActive(true);
+        
         Quaternion rotation = Quaternion.LookRotation
              (player.transform.position - transform.position, transform.TransformDirection(Vector3.up));
         bullet.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);

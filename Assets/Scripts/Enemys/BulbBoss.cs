@@ -80,9 +80,9 @@ public class BulbBoss : Enemy {
     private IEnumerator StateIntro()
     {
         Debug.Log("Intro");
-        yield return new WaitForSeconds(1f);  //PlayIntro
-        state = States.Hot;
-        StartCoroutine(StateHot());
+        yield return new WaitForSeconds(2f);  //PlayIntro
+        state = States.Angry;
+        StartCoroutine(StateAngry());
     }
 
     private IEnumerator StateHot()
