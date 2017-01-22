@@ -11,12 +11,14 @@ public class Room : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        anim =GetComponent<Animator>();
+<<<<<<< HEAD
         anim=GetComponent<Animator>();
+=======
         anim = GetComponent<Animator>();
         dampTime = 0;
         dampProgress = 0;
         StartExit = true;
+>>>>>>> 5558dbfd18e60ff2ef35ab3f4ff9af9d9c10acd4
 	}
 	
 	// Update is called once per frame
