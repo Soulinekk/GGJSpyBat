@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114609464840616726}
   - component: {fileID: 212627770026646490}
   - component: {fileID: 61222584469241960}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: bullet
   m_TagString: bullet
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1202271186098126}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.47, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 2}
   m_Children:
   - {fileID: 4356201496298056}
   m_Father: {fileID: 0}
@@ -110,7 +110,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 9
 --- !u!58 &58744884264457576
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -324,7 +324,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -5
-  m_Sprite: {fileID: 21300000, guid: 54a459b93f88d4641938dfc762ba0dd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8cc2ffbf50b5084498c66b5e056b1ed6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -358,8 +358,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c87ff6356b34d24448f2e3ed90a372ca, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
