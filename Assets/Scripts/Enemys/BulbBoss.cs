@@ -103,20 +103,29 @@ public class BulbBoss : Enemy {
             yield return null; 
             
         }
+        
+        camShake.ShakeCamera(0.2f, 0.2f);
+        angrySound.Play();
+        yield return new WaitForSeconds(1f); //Play Transition Anim 
         gotHit = false;
         CancelInvoke("HeatSpawn");
         CancelInvoke("PlayShotingSound");
-
-       camShake.ShakeCamera(0.2f, 0.2f);
-        angrySound.Play();
-        yield return new WaitForSeconds(1f); //Play Transition Anim 
-        state = States.Angry;
-        StartCoroutine(StateAngry());
+        if (transform.localPosition.y < 38)
+        {
+            state = States.Angry;
+            StartCoroutine(StateAngry());
+        }
+        else
+        {
+            state = States.Die;
+            StartCoroutine(StateDie());
+        }
     }
 
     private IEnumerator StateAngry()
     {
         Debug.Log("Angry");
+        yield return new WaitForSeconds(1f);
         while (Mathf.Abs(transform.position.x - player.transform.position.x)>0.2f)
         {
             transform.position = new Vector3(Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * angrySpeed).x, transform.position.y, transform.position.z);
@@ -124,7 +133,7 @@ public class BulbBoss : Enemy {
         }
         
         anim.SetTrigger("Jump");
-        yield return new WaitForSeconds(2f); //buff Anim --> into Jump
+        yield return new WaitForSeconds(1.5f); //buff Anim --> into Jump
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (transform.position.y < player.transform.position.y)
         {
@@ -153,20 +162,12 @@ public class BulbBoss : Enemy {
         //enable collisions with walls
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("BGWall"), LayerMask.NameToLayer("BulbBoss"), false); //8,11
         
-        yield return new WaitForSeconds(0.9f); //bulb cooling down
-        
-        if (transform.localPosition.y > 40) //kill hight
-        {
-            //yield return new WaitForSeconds(1.5f);
-            state = States.Die;
-            StartCoroutine(StateDie());
-        }
-        else
-        {
-            yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f); //bulb cooling down
+
+            //yield return new WaitForSeconds(2f);
             state = States.Hot;
             StartCoroutine(StateHot());
-        }
+        
 
     }
 
